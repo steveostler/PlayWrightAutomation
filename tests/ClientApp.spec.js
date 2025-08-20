@@ -1,6 +1,6 @@
 const {test, expect} = require('@playwright/test');
 
-test.only('Page Playwright test2', async ({page})=>
+test('Page Playwright test2', async ({page})=>
 {
     await page.goto("https://rahulshettyacademy.com/client");
     const email = page.locator('#userEmail');
