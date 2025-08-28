@@ -3,7 +3,7 @@ const {test, expect} = require('@playwright/test');
 test('Page Playwright test2', async ({page})=>
 {
     await page.goto("https://rahulshettyacademy.com/client");
-    const email = "normanbconquest@gmail.com";
+    const email = "otis@example.com";
     const password = page.locator('#userPassword');
     const login = page.locator('#login');
     const products = page.locator('.card-body');
@@ -11,7 +11,7 @@ test('Page Playwright test2', async ({page})=>
 
     await expect(page).toHaveTitle("Let's Shop");
     await page.locator("#userEmail").fill(email);
-    await password.fill('Otispups1');
+    await password.fill('Learning1@');
     await login.click();
     //await page.waitForLoadState('networkidle');
     // Get the titles of the cards 

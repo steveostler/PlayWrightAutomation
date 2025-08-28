@@ -71,8 +71,8 @@ test('Page Playwright test2', async ({page})=>
     const login = page.locator('#login');
 
     await expect(page).toHaveTitle("Let's Shop");
-    await email.fill('normanbconquest@gmail.com');
-    await password.fill('Otispups1');
+    await email.fill('otis@example.com');
+    await password.fill('Learning1@');
     await login.click();
     const cardTitles = page.locator('.card-body h5');
     console.log(await cardTitles.nth(0).textContent());
