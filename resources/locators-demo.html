@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Locators Demo</title>
+    <style>
+        body { font: 16px/1.4 system-ui, sans-serif; max-width: 680px; margin: 2rem auto; }
+        .card { border: 1px solid #ddd; padding: 1rem; border-radius: .5rem; margin-bottom: 1rem; }
+        button { cursor: pointer; }
+        #flash { color: #0a7f26; font-weight: 600; margin-top: .5rem; }
+        .hidden { display: none; }
+        ul#items { list-style: none; padding: 0; }
+        ul#items li { display: flex; gap: .5rem; align-items: center; margin: .25rem 0; }
+        .tag { background: #eee; padding: .1rem .4rem; border-radius: .25rem; font-size: .85em; }
+    </style>
+</head>
+<body>
+<h1>Locators Demo</h1>
+
+<div class="card" id="subscribe-card">
+    <label for="email">Email</label>
+    <input id="email" type="email" placeholder="you@example.com" />
+    <button id="subscribeBtn" data-test="subscribe">Subscribe</button>
+    <div id="flash" class="hidden"></div>
+</div>
+
+<div class="card" id="search-card">
+    <label for="search">Search</label>
+    <input name="search" id="search" placeholder="search…" />
+    <a id="learnMore" href="#about">Learn more</a>
+    <a href="#more-stuff">More stuff</a>
+</div>
+
+<div class="card" id="list-card">
+    <p>Animals:</p>
+    <ul id="items">
+        <li data-animal="Cat"><span class="name">Cat</span><span class="tag">pet</span><button class="add">Add</button></li>
+        <li data-animal="Fox"><span class="name">Fox</span><span class="tag">wild</span><button class="add">Add</button></li>
+        <li data-animal="Owl"><span class="name">Owl</span><span class="tag">wild</span><button class="add">Add</button></li>
+    </ul>
+    <div>Cart items: <span id="cart-count">0</span></div>
+</div>
+
+<div class="card" id="about"><h2>About</h2><p>This is an anchor target.</p></div>
+<div class="card" id="more-stuff"><h2>More Stuff</h2><p>More anchor target.</p></div>
+
+<script>
+    document.getElementById('subscribeBtn').addEventListener('click', () => {
+      const email = document.getElementById('email').value.trim();
+      const flash = document.getElementById('flash');
+      if (email) { flash.textContent = 'Thanks for subscribing!'; flash.classList.remove('hidden'); }
+      else { flash.textContent = 'Please enter an email.'; flash.classList.remove('hidden'); }
+    });
+
+    let cart = 0;
+    document.querySelectorAll('#items .add').forEach(btn => {
+      btn.addEventListener('click', () => {
+        cart += 1;
+        document.getElementById('cart-count').textContent = String(cart);
+      });
+    });
+</script>
+</body>
+</html>
