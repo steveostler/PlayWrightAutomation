@@ -1,16 +1,18 @@
 const {test, expect} = require('@playwright/test');
 
 
-test('Browser Context  Playwright test', async ({browser})=>
+test.only('Browser Context  Playwright test', async ({browser})=>
 {
     //chrome - plugins/ cookies
     const context = await browser.newContext();
     const page = await context.newPage();
+    //page.route('**/*.css', route => route.abort()); // block css files
     const username = page.locator('#username');
     const password = page.locator('#password');
     const signIn = page.locator('#signInBtn');
     const cardTitles = page.locator('.card-body a');
-
+    page.on('request', request => console.log(request.url()));
+    page.on('response', response => console.log(response.url() + ' ' + response.status()));
     await page.goto("https://rahulshettyacademy.com/loginpagePractise/");
     await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
     await expect(username).toBeVisible();
